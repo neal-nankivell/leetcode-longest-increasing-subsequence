@@ -10,6 +10,7 @@ namespace Tests
         [TestCase(1, ExpectedResult = 1)]
         [TestCase(3, 2, ExpectedResult = 1)]
         [TestCase(10, 5, 11, ExpectedResult = 2)]
+        [TestCase(10, 2, 11, 12, 13, 4, 5, 6, ExpectedResult = 4)]
         public int LengthOfLIS(params int[] nums)
         {
             var sut = new Solution();

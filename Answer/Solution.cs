@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Answer
 {
@@ -22,7 +23,30 @@ namespace Answer
          */
         public int LengthOfLIS(int[] nums)
         {
-            throw new NotImplementedException();
+            if (nums.Length == 0) { return 0; }
+
+            List<Tuple<int, int>> memo = new List<Tuple<int, int>>();
+            memo.Add(new Tuple<int, int>(nums[0], 1));
+
+            int overalMaxLength = 1;
+            for (int i = 1; i < nums.Length; i++)
+            {
+                var max = 0;
+                for (int j = 0; j < i; j++)
+                {
+                    if (memo[j].Item1 < nums[i] && memo[j].Item2 > max)
+                    {
+                        max = memo[j].Item2;
+                    }
+                }
+                max++;
+                memo.Add(new Tuple<int, int>(nums[i], max));
+                if (max > overalMaxLength)
+                {
+                    overalMaxLength = max;
+                }
+            }
+            return overalMaxLength;
         }
     }
 }
